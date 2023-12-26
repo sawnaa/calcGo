@@ -97,9 +97,9 @@ func main() {
 				b, _ = strconv.Atoi(operand2)
 			}
 
-			if a > 10 || b > 10 {
-				fmt.Println(errors.New("числа должны быть до 10"))
-				continue
+			if a > 10 || b > 10 || a < 1 || b < 1 {
+				fmt.Println(errors.New("числа должны быть от 1 до 10 включительно"))
+				break
 			}
 
 			switch operator {
@@ -110,15 +110,10 @@ func main() {
 			case "*":
 				res = a * b
 			case "/":
-				if b == 0 {
-					fmt.Println(errors.New("делить на 0 нельзя"))
-					continue
-				} else {
-					res = a / b
-				}
+				res = a / b
 			default:
 				fmt.Println(errors.New("неподдерживаемая операция"))
-				continue
+				return
 			}
 
 			if isRoman {
@@ -128,6 +123,7 @@ func main() {
 			}
 		} else {
 			fmt.Println(errors.New("числа должны быть в одном формате"))
+			break
 		}
 
 	}
